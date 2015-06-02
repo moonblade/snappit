@@ -1,0 +1,23 @@
+{
+  "name": "snappit",
+  "version": "1.0.0",
+  "description": "simple note sharing website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmjayadeep/snappit.git"
+  },
+  "author": "Jayadeep K M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmjayadeep/snappit/issues"
+  },
+  "homepage": "https://github.com/kmjayadeep/snappit#readme",
+  "dependencies": {
+    "commander": "^2.8.1",
+    "express": "^4.12.4"
+  }
+}
