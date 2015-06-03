@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/kmjayadeep/snappit#readme",
   "dependencies": {
+    "body-parser": "^1.12.4",
     "commander": "^2.8.1",
-    "express": "^4.12.4"
+    "ejs": "^2.3.1",
+    "express": "^4.12.4",
+    "mongoose": "^4.0.4",
+    "mongoose-validator": "^1.0.3"
   }
 }

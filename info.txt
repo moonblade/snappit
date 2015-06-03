@@ -1,0 +1,11 @@
+Error codes
+-------------
+
+1 : Missing arguments in request
+2 : Unknown error
+
+
+Development Notes
+------------------
+
+# Remove viewall function in routes/index when in production
