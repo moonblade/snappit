@@ -12,14 +12,19 @@
 <body>
     <h1>Hello!</h1>
     <p>
-        blah blah blah
+        Type the url here
     </p>
     <form>
-    <input type="text" id="shareurl"/>
+        <input type="text" id="shareurl" />
     </form>
     <button class="btn btn-primary" id="btngo">Go!</button>
     <script src="js/main.js"></script>
     <script>
+    var btn = document.getElementById('btngo')
+    var urlForm = document.getElementById('shareurl')
+    btn.onclick = function() {
+      window.location = urlForm.value;
+    }
     </script>
 </body>
 

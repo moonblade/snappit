@@ -10,6 +10,7 @@ router.post('/save', function(req, res) {
             code: 1,
             message: 'No url'
         })
+    console.log(req.body)
     snipModel.findByUrl(url, function(err, snip) {
         if (err)
             return ree.send({
@@ -21,17 +22,16 @@ router.post('/save', function(req, res) {
         else {
             snip.note = req.body.note
         }
-
         snip.save(function(err, snip) {
             if (err)
                 return res.send({
                     code: 2,
                     message: err
                 })
-            res.send({
-                code: 0,
-                message: "Saved Successfully"
-            })
+                res.send({
+                    code: 0,
+                    message: "Saved Successfully"
+                })
         })
     })
 });
@@ -40,17 +40,22 @@ router.post('/save', function(req, res) {
 if (express().get('env') == 'development')
     router.get('/viewall', function(req, res) {
         snipModel.find({}, function(err, s) {
-            res.send(s)
+            res.json(s)
         })
     })
 
 router.use(function(req, res, next) {
     var url = req.url;
     snipModel.findByUrl(url, function(err, snip) {
-            if (err)
-                return res.send('Something went wrong')
-            res.render('snip', snip)
+        if (err)
+            return res.send('Something went wrong')
+        res.render('snip', {
+            isNew: snip == null,
+            snip: snip || {
+                url : url
+            }
         })
+    })
 })
 
 module.exports = router

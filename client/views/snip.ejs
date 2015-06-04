@@ -14,9 +14,52 @@
     <p>
         blah blah blah
     </p>
+<!--     <% if(isNew){ %>
+        Create new
+    <% }else{ %>
+        <%=snip %>
+    <% } %> -->
+
+
+    <textarea id="note">
+        <% if(!isNew){ %>
+            <%=snip.note%>
+        <% } %>
+    </textarea>
+
     <script src="js/main.js"></script>
     <script>
-    
+        var url = '<%=snip.url%>';
+        var lastUpdate = new Date;
+        var changed = false;
+        var noteForm = document.getElementById('note');
+        var refresh = function(){
+            var data = {}
+            if(noteForm.value)
+                data.note = noteForm.value
+            update(data)
+        }
+        var update = function(data){
+            if((new Date - lastUpdate)<5000||!changed)
+                return;
+            ajax.post('/save',{
+                   url : url,
+                   note: data.note
+                },function(status,data){
+                    if(status==200){
+                        console.log(data)
+                        lastUpdate = new Date;
+                        changed = false
+                    }else{
+                        console.log(status)
+                    }
+                }) 
+        }
+        noteForm.oninput = function(){
+            changed = true;
+            refresh();
+        }
+        setInterval(refresh,5000)
     </script>
 </body>
 
