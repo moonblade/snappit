@@ -30,38 +30,27 @@ router.post('/save', function(req, res) {
                 })
             res.send({
                 code: 0,
-                message: "(y)"
+                message: "Saved Successfully"
             })
         })
-
     })
 });
 
 //only when developing..remove later
-router.get('/viewall', function(req, res) {
-    snipModel.find({}, function(err, s) {
-        res.send(s)
+if (express().get('env') == 'development')
+    router.get('/viewall', function(req, res) {
+        snipModel.find({}, function(err, s) {
+            res.send(s)
+        })
     })
-})
 
 router.use(function(req, res, next) {
     var url = req.url;
     snipModel.findByUrl(url, function(err, snip) {
-            if (!err)
-                res.send(snip)
-            else
-                res.send('error')
+            if (err)
+                return res.send('Something went wrong')
+            res.render('snip', snip)
         })
-        // next()
-})
-
-//create new
-router.use(function(req, res, next) {
-    var url = req.url;
-    if (req.method != 'POST')
-        return res.send('make new one here')
-    console.log(req.body)
-    res.send()
 })
 
 module.exports = router

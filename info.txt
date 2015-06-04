@@ -1,6 +1,7 @@
 Error codes
 -------------
 
+0 : Success; Everything OK
 1 : Missing arguments in request
 2 : Unknown error
 
