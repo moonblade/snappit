@@ -37,7 +37,6 @@ app.use(bodyParser.urlencoded({
 //app.use(bodyParser.json)
 
 app.get('/', function(req, res) {
-    console.log('hello')
     res.render('index')
 });
 

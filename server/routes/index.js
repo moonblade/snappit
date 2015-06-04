@@ -2,7 +2,6 @@ var express = require('express')
 var router = express.Router()
 var snipModel = require('../models/snip')
 
-
 router.post('/save', function(req, res) {
     var url = req.body.url;
     if (!url)
@@ -22,17 +21,32 @@ router.post('/save', function(req, res) {
         else {
             snip.note = req.body.note
         }
-        snip.save(function(err, snip) {
-            if (err)
-                return res.send({
-                    code: 2,
-                    message: err
+        if (!snip.note && snip._id) {
+            snipModel.remove({
+                _id: snip._id
+            }, function(err) {
+                if (err)
+                    return res.send({
+                        code: 2,
+                        message: err
+                    })
+                res.send({
+                    code: 0,
+                    message: "Deleted Successfully"
                 })
+            })
+        } else
+            snip.save(function(err, snip) {
+                if (err)
+                    return res.send({
+                        code: 2,
+                        message: err
+                    })
                 res.send({
                     code: 0,
                     message: "Saved Successfully"
                 })
-        })
+            })
     })
 });
 
@@ -46,13 +60,15 @@ if (express().get('env') == 'development')
 
 router.use(function(req, res, next) {
     var url = req.url;
+    if (req.method != 'GET')
+        return res.send('Access Denied')
     snipModel.findByUrl(url, function(err, snip) {
         if (err)
             return res.send('Something went wrong')
         res.render('snip', {
             isNew: snip == null,
             snip: snip || {
-                url : url
+                url: url
             }
         })
     })

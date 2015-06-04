@@ -12,19 +12,25 @@
 <body>
     <h1>Hello!</h1>
     <p>
-        Type the url here
+        Type the url here :
     </p>
-    <form>
+    <form id="inputform">
         <input type="text" id="shareurl" />
     </form>
     <button class="btn btn-primary" id="btngo">Go!</button>
-    <script src="js/main.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script>
-    var btn = document.getElementById('btngo')
-    var urlForm = document.getElementById('shareurl')
-    btn.onclick = function() {
-      window.location = urlForm.value;
-    }
+    $(document).ready(function(){
+        var btn = $('#btngo');
+        var urlForm = $('#shareurl');
+        btn.click(function(){
+            window.location = '/'+urlForm.val();
+        });
+        $('#inputform').submit(function(event){
+            event.preventDefault();
+            window.location = '/'+urlForm.val();
+        })
+    });
     </script>
 </body>
 
