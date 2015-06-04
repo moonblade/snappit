@@ -10,3 +10,4 @@ Development Notes
 ------------------
 
 # Remove viewall function in routes/index when in production
+# Reduce size of everything

@@ -6,7 +6,11 @@ var snipSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    note: String
+    note: String,
+    modified: {
+        type: String,
+        required:true
+    }
 })
 
 snipSchema.index({
