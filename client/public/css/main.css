@@ -1,9 +1,27 @@
 #note {
     width: 100%;
     height: 50vh;
+    resize:vertical;
 }
 
-@media screen and (	min-width:600px) {
+/* title */
+header div.title {
+    display: inline-block;
+    border: 1px solid rgb(2, 142, 184);
+}
+
+header div.title h1 {
+    margin: 0;
+    color:rgb(2, 97, 126);
+}
+
+header div.title h1 span {
+    color: white;
+    background: rgb(0, 68, 89);
+}
+/* title end */
+
+@media screen and ( min-width: 600px) {
     .main {
         width: 60%;
         float: left;
@@ -16,11 +34,54 @@
     }
 }
 
-#linksinput{
-	width: 90%;
+#linksinput {
+    width: 90%;
 }
-.links a{
-	display: block;
-	padding: 5px;
-	text-decoration: none;
+
+.links a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
 }
+.tools{
+	padding: 10px 0px;
+}
+.tools a{
+	position: relative;
+}
+i.snap-cross{
+	color:red;
+}
+
+.tools ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0
+}
+.tools ul li{
+	width: 32px;
+	float:left;
+	border:0;
+	padding: 0;
+	text-align: center;
+}
+.tools ul:after{
+	content: " ";
+	display: table;
+	clear: both;
+}
+
+/* For moving the links to top right */
+/*
+
+header .title{
+	float: left;
+}
+.tools{
+	float: right;
+}
+header:after{
+	content: " ";
+	display:table;
+	clear: both
+}*/

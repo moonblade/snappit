@@ -7,19 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Snappit</title>
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Hello!</h1>
-    <p>
-        blah blah blah
-    </p>
+    <header>
+        <div class="title">
+            <h1>Snapp<span>it</span></h1>
+        </div>
+        <div class="tools">
+        <ul>
+            <li><a href="" alt="New"><i class="snap-plus"></i></a></li>
+            <li><a href="" alt="Lock"><i class="snap-lock"></i></a></li>
+            <li><a href="" alt="Share"><i class="snap-share"></i></a></li>
+            <li><a href="" alt="Settings"><i class="snap-sliders"></i></a></li>
+            <li><a href="" alt="Help"><i class="snap-help"></i></a></li>
+            <li><a href="" alt="Delete"><i class="snap-cross"></i></a></li>
+        </ul>
+        </div>
+    </header>
     <section class="main">
-    <h3>Share Notes</h3>
+    <h3>Save Notes</h3>
     <textarea id="note"><% if(!isNew){ %><%=snip.note%><% } %></textarea>
     </section>
     <section class="side">
-        <h3>Share Links</h3>
+        <h3>Save Links</h3>
         <div id="links">
         <%snip.urls&&snip.urls.forEach(function(v){%>
             <div>
@@ -28,7 +40,7 @@
         <% });%>
         </div>
         <form id="urlform">
-        <input type="text" id="urlinput" />
+        <input type="text" id="urlinput" placeholder="Enter link" />
         </form>
     </section>
     <div style="clear:both;"></div>
