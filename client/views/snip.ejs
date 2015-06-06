@@ -14,25 +14,63 @@
     <p>
         blah blah blah
     </p>
+    <section class="main">
+    <h3>Share Notes</h3>
     <textarea id="note"><% if(!isNew){ %><%=snip.note%><% } %></textarea>
+    </section>
+    <section class="side">
+        <h3>Share Links</h3>
+        <div id="links">
+        <%snip.urls&&snip.urls.forEach(function(v){%>
+            <div>
+                <a href="<%=v%>"><%=v%></a>
+            </div>
+        <% });%>
+        </div>
+        <form id="urlform">
+        <input type="text" id="urlinput" />
+        </form>
+    </section>
+    <div style="clear:both;"></div>
     <script src="js/jquery.min.js"></script>
     <script>
         var url = '<%=snip.url%>';
         var lastUpdate = new Date;
         var changed = false;
         var noteForm = $('#note')
-        var refresh = function(){
-            var data = {}
+        var urlForm = $('#urlform')
+        var urlInput =  $('#urlinput')
+        var links = $('#links')
+        var refreshNote = function(){
+            if((new Date - lastUpdate)<5000||!changed)
+                return;
+            var data = {url:url}
             data.note = noteForm.val() || '';
             update(data)
         }
+        urlForm.submit(function(event){
+            event.preventDefault();
+            var u = urlInput.val();
+            if(!u) return;
+            var d = $('<div></div');
+            var di = $('<a>'+u+'</a>')
+            di.attr('href',u);
+            d.append(di);
+            links.append(d);
+            urlform.reset();
+            refreshUrl();
+        });
+        var refreshUrl = function(){
+            var allLinks = $('#links div a');
+            var data = {url:url,urls:[]}
+            $.each(allLinks,function(key,a){
+                data.urls.push($(a).attr('href'));
+            });
+            console.log(data)
+            update(data)
+        }
         var update = function(data){
-            if((new Date - lastUpdate)<5000||!changed)
-                return;
-            var up = $.post('/save',{
-                url:url,
-                note:data.note
-            },function(data){
+            var up = $.post('/save',data,function(data){
                 console.log(data)
                 lastUpdate = new Date;
                 changed = false;
@@ -43,9 +81,9 @@
         }
         note.oninput = function(){
             changed = true;
-            refresh();
+            refreshNote();
         }
-        setInterval(refresh,5000)
+        setInterval(refreshNote,5000)
     </script>
 </body>
 

@@ -16,15 +16,17 @@ router.post('/save', function(req, res) {
                 code: 2,
                 message: err
             })
-        if (!snip){
+        if (!snip) {
             snip = new snipModel(req.body)
             snip.modified = new Date
-        }
-        else {
-            snip.note = req.body.note
+        } else {
+            if (req.body.note)
+                snip.note = req.body.note
+            if (req.body.urls)
+                snip.urls = req.body.urls
             snip.modified = new Date
         }
-        if (!snip.note && snip._id) {
+        if (!snip.note && !snip.urls && snip._id) {
             snipModel.remove({
                 _id: snip._id
             }, function(err) {

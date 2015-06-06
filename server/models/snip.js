@@ -7,6 +7,7 @@ var snipSchema = mongoose.Schema({
         required: true
     },
     note: String,
+    urls:[String],
     modified: {
         type: String,
         required:true
