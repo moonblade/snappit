@@ -52,8 +52,8 @@
     box-shadow: inset 0 0 0 32px
 }
 
-.snap-check:before{
-    width:21px;
+.snap-check:before {
+    width: 21px;
     height: 2px;
 }
 
@@ -330,7 +330,6 @@ a[alt="Lock"]:after {
     left: 4px;
     bottom: 8px
 }
-
 
 [class*=snap-exclamation] {
     overflow: visible;

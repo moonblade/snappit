@@ -26,6 +26,9 @@
             <div class="notif" id="notiferror">
                 <span>Network Error</span><i class="snap-exclamation"></i>
             </div>
+            <div class="notif" id="notiferror2">
+                <span>Error: Unable to Save</span><i class="snap-exclamation"></i>
+            </div>
         </div>
         <div style="clear:both"></div>
         <div class="tools">
@@ -45,19 +48,22 @@
             <div id="divnote">
                 <textarea id="note"><% if(!isNew){ %><%=snip.note%><% } %></textarea>
             </div>
-            </section>
+        </section>
         <section id="side">
             <h3>Save Links</h3>
             <div id="divlinks">
                 <div id="links">
-                <%snip.urls&&snip.urls.forEach(function(v){%>
-                    <div>
-                        <a href="<%=v%>"><%=v%></a>
+                <%snip.urls&&snip.urls.forEach(function(v,i){%>
+                    <div data-delid="<%=i%>">
+                        <a href="<%=v.link%>" target="_blank" data-link="<%=v.link%>" data-label="<%=v.label%>"><%=v.label%><i class="snap-cross" onclick="deleteLink(event,<%=i%>)"></i></a>
                     </div>
                 <% });%>
                 </div>
                 <form id="urlform">
+                    <h4>New Link</h4>
+                    <input type="text" id="labelinput" placeholder="Link Label" />
                     <input type="text" id="urlinput" placeholder="Enter link" />
+                    <button type="submit">Add Link</button>
                 </form>
             </div>
         </section>
@@ -65,15 +71,18 @@
     <script src="js/jquery.min.js"></script>
     <script>
         var url = '<%=snip.url%>';
+        var delid = '<%=snip&&snip.urls&&snip.urls.length || 0 %>';
         var lastUpdate = new Date;
         var changed = false;
         var noteForm = $('#note')
         var urlForm = $('#urlform')
         var urlInput =  $('#urlinput')
+        var labelInput = $('#labelinput')
         var links = $('#links')
         var saving = $('#notifsaving')
         var saved = $('#notifsaved')
         var error = $('#notiferror')
+        var error2 = $('#notiferror2')
         var notif = $('.notif')
         var refreshNote = function(){
             if((new Date - lastUpdate)<5000||!changed)
@@ -83,44 +92,79 @@
             update(data)
         }
         urlForm.submit(function(event){
+            console.log('submit')
             event.preventDefault();
+            addLink();
+            refreshUrl();
+        });
+
+        var deleteLink = function(event,id){
+            event.preventDefault();
+            $('[data-delid='+id+']').detach();
+            refreshUrl();
+        }
+
+        var addLink = function(){
             var u = urlInput.val();
+            var l = labelInput.val();
+            if(!l) l=u;
             if(!u) return;
             var d = $('<div></div');
-            var di = $('<a>'+u+'</a>')
+            var di = $('<a>'+l+'</a>');
+            var dii = $('<i></i>');
+            dii.attr('class','snap-cross');
+            dii.attr('onclick','deleteLink(event,'+delid+')');
+            d.attr('data-delid',delid++);
             di.attr('href',u);
+            di.attr('data-label',l);
+            di.attr('data-link',u);
+            di.attr('target','_blank')
+            di.append(dii);
             d.append(di);
             links.append(d);
             urlform.reset();
-            refreshUrl();
-        });
+        }
+
         var refreshUrl = function(){
             var allLinks = $('#links div a');
             var data = {url:url,urls:[]}
             $.each(allLinks,function(key,a){
-                data.urls.push($(a).attr('href'));
+                data.urls.push({
+                    label:$(a).data('label'),
+                    link:$(a).data('link')
+                });
             });
-            console.log(data)
+            if(!data.urls.length){
+                data.urls = [{
+                    empty:true
+                }]
+            }
             update(data)
         }
         var update = function(data){
+            notif.hide();
             saving.show();
             var up = $.post('/save',data,function(data){
                 console.log(data)
                 lastUpdate = new Date;
                 changed = false;
+                if(saving.is(':hidden'))
+                    return;
                 notif.slideUp();
-                saved.slideDown();
+                if(data.code==0)
+                    saved.slideDown();
+                else
+                    error2.slideDown();
                 setTimeout(function(){
-                    notif.hide()
-                },2000);
+                    notif.slideUp();
+                },3000);
             });
             up.fail(function(){
                 notif.slideUp();
                 error.slideDown();
                 setTimeout(function(){
                     notif.slideUp();
-                },2000);
+                },3000);
                 console.log('Something went wrong')
             });
         }

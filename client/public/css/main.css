@@ -13,6 +13,19 @@ header:after{
 	clear: both
 }*/
 
+::-webkit-scrollbar {
+      width: 5px;
+} 
+
+::-webkit-scrollbar-track {
+      background-color: #CBDFE0;
+} 
+::-webkit-scrollbar-thumb {
+      background-color: rgba(26, 87, 105, 1) 
+} 
+::-webkit-scrollbar-button {
+	height: 0;
+}
 #note {
     width: calc(100% - 6px);
     height: 50vh;
@@ -46,6 +59,16 @@ header .title {
     color: white
 }
 #notiferror i{
+	color:white;
+	position: relative;
+	top: 7px;
+}
+#notiferror2 {
+    background-color: rgb(50, 46, 46);
+    background-color: red;
+    color: white
+}
+#notiferror2 i{
 	color:white;
 	position: relative;
 	top: 7px;
@@ -91,6 +114,13 @@ header div.title h1 span {
 #side h3 {
     margin: 4px 5px 10px;
     color: rgb(0, 68, 89);
+}
+
+@media screen and (max-width: 450px){
+	#notif{
+		position: fixed;
+		right: 0;
+	}
 }
 
 @media screen and ( min-width: 600px) {
@@ -162,4 +192,59 @@ i.snap-cross {
     content: " ";
     display: table;
     clear: both;
+}
+
+#urlform{
+	text-align: center;
+	padding: 5px;
+	background: #F0F0F0;
+	margin-top: 4px;
+}
+#urlform h4{
+	color:#004459;
+	margin: 0;
+	padding: 5px 3px;
+}
+#urlform input{
+	padding: 6px;
+	display: block;
+	width: 90%;
+	margin: 3px auto;
+	border:1px solid rgb(199, 199, 199);
+	border-radius: 3px;
+}
+#urlform button{
+	padding: 5px;
+	margin: 6px auto;
+	background: #00888D;
+	color:#fff;
+	border-radius: 8%;
+	border:none;
+}
+#links{
+	max-height: 27vh;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+#links div{
+	padding: 5px 2px;
+	background: rgba(0, 99, 107, 0.2);
+	margin-bottom:3px;
+	border-radius: 1%;
+
+}
+#links div a{
+	text-decoration: none;
+	color:#015751;
+	display: block;
+	padding: 7px;
+	position: relative;
+	font-family: monospace;
+}
+#links div i{
+	display: block;
+	float:right;
+	position: absolute;
+	right: 0;
+	top:0;
 }

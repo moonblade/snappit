@@ -23,35 +23,41 @@ router.post('/save', function(req, res) {
             if (req.body.note)
                 snip.note = req.body.note
             if (req.body.urls)
-                snip.urls = req.body.urls
+                snip.urls = eval(req.body.urls)
             snip.modified = new Date
         }
-        if (!snip.note && !snip.urls && snip._id) {
-            snipModel.remove({
-                _id: snip._id
-            }, function(err) {
-                if (err)
-                    return res.send({
-                        code: 2,
-                        message: err
-                    })
-                res.send({
-                    code: 0,
-                    message: "Deleted Successfully"
+
+        if (!snip.urls[0].link)
+            snip.urls = [];
+
+
+        // if (!snip.note && !snip.urls && snip._id) {
+        //     snipModel.remove({
+        //         _id: snip._id
+        //     }, function(err) {
+        //         if (err)
+        //             return res.send({
+        //                 code: 2,
+        //                 message: err
+        //             })
+        //         res.send({
+        //             code: 0,
+        //             message: "Deleted Successfully"
+        //         })
+        //     })
+        // } else
+
+        snip.save(function(err, snip) {
+            if (err)
+                return res.send({
+                    code: 2,
+                    message: err
                 })
+            res.send({
+                code: 0,
+                message: "Saved Successfully"
             })
-        } else
-            snip.save(function(err, snip) {
-                if (err)
-                    return res.send({
-                        code: 2,
-                        message: err
-                    })
-                res.send({
-                    code: 0,
-                    message: "Saved Successfully"
-                })
-            })
+        })
     })
 });
 
