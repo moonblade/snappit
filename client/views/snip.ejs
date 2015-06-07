@@ -14,7 +14,20 @@
     <header>
         <div class="title">
             <h1>Snapp<span>it</span></h1>
+
         </div>
+        <div id="notif">
+            <div class="notif" id="notifsaving">
+                <span>Saving</span><i class="snap-loader"></i>
+            </div>
+            <div class="notif" id="notifsaved">
+                <span>Saved</span><i class="snap-check"></i>
+            </div>
+            <div class="notif" id="notiferror">
+                <span>Network Error</span><i class="snap-exclamation"></i>
+            </div>
+        </div>
+        <div style="clear:both"></div>
         <div class="tools">
         <ul>
             <li><a href="" alt="New"><i class="snap-plus"></i></a></li>
@@ -26,24 +39,29 @@
         </ul>
         </div>
     </header>
-    <section class="main">
-    <h3>Save Notes</h3>
-    <textarea id="note"><% if(!isNew){ %><%=snip.note%><% } %></textarea>
-    </section>
-    <section class="side">
-        <h3>Save Links</h3>
-        <div id="links">
-        <%snip.urls&&snip.urls.forEach(function(v){%>
-            <div>
-                <a href="<%=v%>"><%=v%></a>
+    <section id="mainbody">
+        <section id="main">
+            <h3>Save Notes</h3>
+            <div id="divnote">
+                <textarea id="note"><% if(!isNew){ %><%=snip.note%><% } %></textarea>
             </div>
-        <% });%>
-        </div>
-        <form id="urlform">
-        <input type="text" id="urlinput" placeholder="Enter link" />
-        </form>
+            </section>
+        <section id="side">
+            <h3>Save Links</h3>
+            <div id="divlinks">
+                <div id="links">
+                <%snip.urls&&snip.urls.forEach(function(v){%>
+                    <div>
+                        <a href="<%=v%>"><%=v%></a>
+                    </div>
+                <% });%>
+                </div>
+                <form id="urlform">
+                    <input type="text" id="urlinput" placeholder="Enter link" />
+                </form>
+            </div>
+        </section>
     </section>
-    <div style="clear:both;"></div>
     <script src="js/jquery.min.js"></script>
     <script>
         var url = '<%=snip.url%>';
@@ -53,6 +71,10 @@
         var urlForm = $('#urlform')
         var urlInput =  $('#urlinput')
         var links = $('#links')
+        var saving = $('#notifsaving')
+        var saved = $('#notifsaved')
+        var error = $('#notiferror')
+        var notif = $('.notif')
         var refreshNote = function(){
             if((new Date - lastUpdate)<5000||!changed)
                 return;
@@ -82,12 +104,23 @@
             update(data)
         }
         var update = function(data){
+            saving.show();
             var up = $.post('/save',data,function(data){
                 console.log(data)
                 lastUpdate = new Date;
                 changed = false;
+                notif.slideUp();
+                saved.slideDown();
+                setTimeout(function(){
+                    notif.hide()
+                },2000);
             });
             up.fail(function(){
+                notif.slideUp();
+                error.slideDown();
+                setTimeout(function(){
+                    notif.slideUp();
+                },2000);
                 console.log('Something went wrong')
             });
         }

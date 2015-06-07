@@ -20,6 +20,9 @@
     pointer-events: none
 }
 
+[class*=snap-exclamation]:after,
+[class*=snap-check]:before,
+[class*=snap-cross]:after,
 [class*=snap-cross]:after,
 [class*=snap-cross]:before,
 [class*=snap-plus]:after,
@@ -41,11 +44,17 @@
     margin: 1px
 }
 
+[class*=snap-check]:before,
 [class*=snap-cross]:after,
 [class*=snap-cross]:before,
 [class*=snap-plus]:after,
 [class*=snap-plus]:before {
     box-shadow: inset 0 0 0 32px
+}
+
+.snap-check:before{
+    width:21px;
+    height: 2px;
 }
 
 [class*=snap-cross]:before,
@@ -255,6 +264,107 @@ a[alt="Lock"]:after {
     border-radius: 16px;
 }
 
-.snap-share:hover{
+.snap-share:hover {
     background: red;
+}
+
+@-webkit-keyframes snap-loader-rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes snap-loader-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes snap-loader-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.snap-loader {
+    opacity: .8;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 20px;
+    width: .25em;
+    height: .25em;
+    box-shadow: 0 -.4em 0 0 rgba(0, 68, 89, 1), -.28em -.28em 0 0 rgba(0, 68, 89, 1), -.4em 0 0 0 rgba(0, 68, 89, 1), -.28em .28em 0 0 rgba(0, 68, 89, 1);
+    -webkit-animation: .85s snap-loader-rotate steps(8) infinite;
+    -moz-animation: .85s snap-loader-rotate steps(8) infinite;
+    animation: .85s snap-loader-rotate steps(8) infinite;
+}
+
+[class*=snap-check] {
+    width: 28px;
+    height: 18px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg)
+}
+
+[class*=snap-check]:after,
+[class*=snap-check]:before {
+    box-shadow: inset 0 0 0 32px
+}
+
+[class*=snap-check]:after {
+    position: absolute;
+    height: 14px;
+    width: 2px;
+    left: 4px;
+    bottom: 8px
+}
+
+
+[class*=snap-exclamation] {
+    overflow: visible;
+    width: 30px;
+    border-bottom: 2px solid;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+    margin: 10px 2px 6px
+}
+
+[class*=snap-exclamation]:before {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 1px;
+    top: -14px;
+    border-width: 2px 0 0 2px;
+    border-style: solid;
+    -webkit-border-radius: 4px 0;
+    -moz-border-radius: 4px 0;
+    -o-border-radius: 4px 0;
+    border-radius: 4px 0;
+    -webkit-transform: rotate(45deg) skew(12deg, 12deg);
+    -moz-transform: rotate(45deg) skew(12deg, 12deg);
+    -ms-transform: rotate(45deg) skew(12deg, 12deg);
+    -o-transform: rotate(45deg) skew(12deg, 12deg);
+    transform: rotate(45deg) skew(12deg, 12deg)
+}
+
+[class*=snap-exclamation]:after {
+    width: 4px;
+    height: 3px;
+    top: -14px;
+    box-shadow: inset 0 0 0 32px, 0 3px, 0 8px
 }
