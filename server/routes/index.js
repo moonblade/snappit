@@ -27,7 +27,7 @@ router.post('/save', function(req, res) {
             snip.modified = new Date
         }
 
-        if (!snip.urls[0].link)
+        if (snip.urls&&snip.urls[0]&&!snip.urls[0].link)
             snip.urls = [];
 
 
@@ -60,6 +60,19 @@ router.post('/save', function(req, res) {
         })
     })
 });
+
+router.get('/delete/:url',function(req,res){
+
+    snipModel.findByUrl('/'+req.params.url,function(err,snip){
+        if(snip){
+            snip.remove(function(err){
+                res.redirect('/')
+            })
+        }else{
+            res.redirect('/')
+        }
+    })
+})
 
 //only when developing..remove later
 if (express().get('env') == 'development')

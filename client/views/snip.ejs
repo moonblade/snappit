@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Snappit</title>
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/icons.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
             <li><a href="" alt="Share"><i class="snap-share"></i></a></li>
             <li><a href="" alt="Settings"><i class="snap-sliders"></i></a></li>
             <li><a href="" alt="Help"><i class="snap-help"></i></a></li>
-            <li><a href="" alt="Delete"><i class="snap-cross"></i></a></li>
+            <li><a href="/delete<%=snip.url%>" alt="Delete"><i class="snap-cross"></i></a></li>
         </ul>
         </div>
     </header>
@@ -62,13 +62,13 @@
                 <form id="urlform">
                     <h4>New Link</h4>
                     <input type="text" id="labelinput" placeholder="Link Label" />
-                    <input type="text" id="urlinput" placeholder="Enter link" />
+                    <input type="text" id="urlinput" placeholder="Enter Link" />
                     <button type="submit">Add Link</button>
                 </form>
             </div>
         </section>
     </section>
-    <script src="js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script>
         var url = '<%=snip.url%>';
         var delid = '<%=snip&&snip.urls&&snip.urls.length || 0 %>';
@@ -155,16 +155,10 @@
                     saved.slideDown();
                 else
                     error2.slideDown();
-                setTimeout(function(){
-                    notif.slideUp();
-                },3000);
             });
             up.fail(function(){
                 notif.slideUp();
                 error.slideDown();
-                setTimeout(function(){
-                    notif.slideUp();
-                },3000);
                 console.log('Something went wrong')
             });
         }
