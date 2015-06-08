@@ -90,6 +90,7 @@ router.use(function(req, res, next) {
         if (err)
             return res.send('Something went wrong')
         res.render('snip', {
+            baseUrl:req.headers.host,
             isNew: snip == null,
             snip: snip || {
                 url: url

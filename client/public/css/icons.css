@@ -20,6 +20,7 @@
     pointer-events: none
 }
 
+.snap-gplus:after,
 [class*=snap-exclamation]:after,
 [class*=snap-check]:before,
 [class*=snap-cross]:after,
@@ -302,8 +303,7 @@ a[alt="Lock"]:after {
     font-size: 20px;
     width: .25em;
     height: .25em;
-    box-shadow: 0 -.4em 0 0 rgba(0, 68, 89, 1), -.28em -.28em 0 0 rgba(0, 68, 89, 1), -.4em 0 0 0 rgba(0, 68, 89, 1), -.28em .28em 0 0 rgba(0, 68, 89, 1);
-    -webkit-animation: .85s snap-loader-rotate steps(8) infinite;
+    box-shadow: 0 -.4em 0 0 rgba(0, 134, 182, 1), -.28em -.28em 0 0 rgba(0, 134, 192, 1), -.4em 0 0 0 rgba(0, 124, 200, 1), -.28em .28em 0 0 rgba(0, 169, 190, 1);
     -moz-animation: .85s snap-loader-rotate steps(8) infinite;
     animation: .85s snap-loader-rotate steps(8) infinite;
 }
@@ -366,4 +366,88 @@ a[alt="Lock"]:after {
     height: 3px;
     top: -14px;
     box-shadow: inset 0 0 0 32px, 0 3px, 0 8px
+}
+
+
+
+.snap-facebook {
+    width: 9px;
+    height: 26px;
+    box-shadow: inset 2px 4px 0 0;
+    border-left: 3px solid;
+    -webkit-border-radius: 5px 0 0;
+    -moz-border-radius: 5px 0 0;
+    -o-border-radius: 5px 0 0;
+    border-radius: 5px 0 0;
+    margin: 4px 11px 4px 14px
+}
+
+.snap-facebook:before {
+    position: absolute;
+    top: 9px;
+    left: -6px;
+    width: 11px;
+    height: 0;
+    border-top: 4px solid;
+    border-right: 1px solid transparent
+}
+
+.snap-twitter {
+    width: 14px;
+    height: 23px;
+    -webkit-border-radius: 0 0 0 8px;
+    -moz-border-radius: 0 0 0 8px;
+    -o-border-radius: 0 0 0 8px;
+    border-radius: 0 0 0 8px;
+    box-shadow: -6px 2px 0 0;
+    margin: 4px 7px 7px 13px
+}
+
+.snap-twitter:before {
+    position: absolute;
+    bottom: -2px;
+    left: -6px;
+    width: 17px;
+    height: 6px;
+    -webkit-border-radius: 0 0 0 8px;
+    -moz-border-radius: 0 0 0 8px;
+    -o-border-radius: 0 0 0 8px;
+    border-radius: 0 0 0 8px;
+    box-shadow: inset 4px -6px, 0 -11px
+}
+
+.snap-twitter:after {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    box-shadow: inset 0 0 0 32px, 13px 8px, 13px 19px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    left: -6px
+}
+
+.snap-gplus {
+    width: 10px;
+    height: 2px;
+    box-shadow: inset 0 0 0 32px;
+    margin: 14px 4px 18px 20px
+}
+
+.snap-gplus:before {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    content: "g"!important;
+    font-family: georgia monospace;
+    font-size: 32px;
+    text-indent: 0;
+    line-height: 0
+}
+
+.snap-gplus:after {
+    width: 2px;
+    height: 10px;
+    box-shadow: inset 0 0 0 32px
 }

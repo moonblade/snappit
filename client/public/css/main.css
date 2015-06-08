@@ -1,31 +1,23 @@
-/* For moving the links to top right */
-/*
-
-header .title{
-	float: left;
-}
-.tools{
-	float: right;
-}
-header:after{
-	content: " ";
-	display:table;
-	clear: both
-}*/
-
 ::-webkit-scrollbar {
-      width: 5px;
-} 
+    width: 5px;
+}
 
 ::-webkit-scrollbar-track {
-      background-color: #CBDFE0;
-} 
-::-webkit-scrollbar-thumb {
-      background-color: rgba(26, 87, 105, 1) 
-} 
-::-webkit-scrollbar-button {
-	height: 0;
+    background-color: #CBDFE0;
 }
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(26, 87, 105, 1)
+}
+
+::-webkit-scrollbar-button {
+    height: 0;
+}
+
+button{
+	cursor: pointer;
+}
+
 #note {
     width: calc(100% - 6px);
     height: 50vh;
@@ -49,8 +41,12 @@ header .title {
 }
 
 #notifsaving {
-    background-color: rgb(249, 246, 16);
-    color: rgb(0, 68, 89);
+    background-color: rgb(16, 169, 249);
+    color: #fff;
+}
+
+#notifsaving i{
+	color:#fff;
 }
 
 #notiferror {
@@ -58,20 +54,34 @@ header .title {
     background-color: red;
     color: white
 }
-#notiferror i{
-	color:white;
-	position: relative;
-	top: 7px;
+
+#notiferror i {
+    color: white;
+    position: relative;
+    top: 7px;
 }
+
 #notiferror2 {
-    background-color: rgb(50, 46, 46);
-    background-color: red;
+    background-color: #FF6246;
     color: white
 }
-#notiferror2 i{
-	color:white;
-	position: relative;
-	top: 7px;
+
+#notiferror2 i {
+    color: white;
+    position: relative;
+    top: 7px;
+}
+
+#notifunsaved {
+    background-color: rgb(249, 246, 16);
+    color: rgb(0, 68, 89);
+}
+
+#notifunsaved i {
+    background-color: rgb(249, 246, 16);
+    color: rgb(0, 68, 89);
+    position: relative;
+    top: 7px;
 }
 
 #notifsaved {
@@ -116,11 +126,11 @@ header div.title h1 span {
     color: rgb(0, 68, 89);
 }
 
-@media screen and (max-width: 450px){
-	#notif{
-		position: fixed;
-		right: 0;
-	}
+@media screen and (max-width: 450px) {
+    #notif {
+        position: fixed;
+        right: 0;
+    }
 }
 
 @media screen and ( min-width: 600px) {
@@ -149,6 +159,11 @@ header div.title h1 span {
     }
     #side {
         width: 100%;
+    }
+    .input-group-addon,form .input-group input{
+    	display: block;
+    	width: 90%;
+    	margin:auto;
     }
 }
 
@@ -194,57 +209,127 @@ i.snap-cross {
     clear: both;
 }
 
-#urlform{
-	text-align: center;
-	padding: 5px;
-	background: #F0F0F0;
-	margin-top: 4px;
+#urlform {
+    text-align: center;
+    padding: 5px;
+    background: #F0F0F0;
+    margin-top: 4px;
 }
-#urlform h4{
-	color:#004459;
-	margin: 0;
-	padding: 5px 3px;
-}
-#urlform input{
-	padding: 6px;
-	display: block;
-	width: 90%;
-	margin: 3px auto;
-	border:1px solid rgb(199, 199, 199);
-	border-radius: 3px;
-}
-#urlform button{
-	padding: 5px;
-	margin: 6px auto;
-	background: #00888D;
-	color:#fff;
-	border-radius: 8%;
-	border:none;
-}
-#links{
-	max-height: 27vh;
-	overflow-y:scroll;
-	overflow-x:hidden;
-}
-#links div{
-	padding: 5px 2px;
-	background: rgba(0, 99, 107, 0.2);
-	margin-bottom:3px;
-	border-radius: 1%;
 
+#urlform h4 {
+    color: #004459;
+    margin: 0;
+    padding: 5px 3px;
 }
-#links div a{
-	text-decoration: none;
-	color:#015751;
-	display: block;
-	padding: 7px;
-	position: relative;
-	font-family: monospace;
+
+#urlform input {
+    padding: 6px;
+    display: block;
+    width: 90%;
+    margin: 3px auto;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 3px;
 }
-#links div i{
-	display: block;
-	float:right;
+
+#urlform button {
+    padding: 5px;
+    margin: 6px auto;
+    background: #00888D;
+    color: #fff;
+    border: none;
+}
+
+#links {
+    max-height: 27vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#links div {
+    padding: 5px 2px;
+    background: rgba(0, 99, 107, 0.2);
+    margin-bottom: 3px;
+    border-radius: 1%;
+}
+
+#links div a {
+    text-decoration: none;
+    color: #015751;
+    display: block;
+    padding: 7px;
+    position: relative;
+    font-family: monospace;
+}
+
+#links div i {
+    display: block;
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.popup{
+	position: absolute;
+	color:white;
+	padding: 10px;
+	background: rgb(46, 204, 113);
+	text-align: center;
+	z-index: 20;
+	display: none;
+}
+.popup-close{
 	position: absolute;
 	right: 0;
 	top:0;
+	background: #F83F1D;
+	color: white;
+	padding: 3px;
+	font-family: monospace;
+	cursor: pointer;
+	font-weight: bold;
+}
+.popup h4{
+	margin:10px 15px; 
+}
+.popup form label{
+	display: block;
+	margin-bottom: 5px;
+}
+.input-group-addon{
+	padding: 8px;
+	background: #13A0A5;
+	color: #fff;
+	border:none;
+	height: 40px;
+}
+.input-group input,.form-control{
+	padding:11px;
+	margin:0px -10px;
+	border:none;
+}
+
+.sharebuttons{
+	margin-top: 10px;
+}
+.sharebuttons a{
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	overflow: hidden;
+}
+.sharebuttons a i{
+	color:#fff;
+}
+.sharebuttons a[icon=fb]{
+	background: blue;
+}.sharebuttons a[icon=tw]{
+	background: rgb(0, 159, 211);
+}.sharebuttons a[icon=gp]{
+	background: rgb(240, 64, 32)
+}.sharebuttons a[icon=ml] i{
+	background: orange;
+}
+#sharesnap input{
+	margin:0;
 }
