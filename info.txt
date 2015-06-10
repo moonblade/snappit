@@ -4,7 +4,15 @@ Error codes
 0 : Success; Everything OK
 1 : Missing arguments in request
 2 : Unknown error
+3 : Invalid Credentials
+4 : Access Denied
 
+
+Lock Types
+-----------
+0 : No lock
+1 : Read only
+2 : Exclusive lock
 
 Development Notes
 ------------------

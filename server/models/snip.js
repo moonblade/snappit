@@ -7,15 +7,22 @@ var snipSchema = mongoose.Schema({
         required: true
     },
     note: String,
-    urls:[{
-        label:String,
-        link:String,
-        _id:false,
-        id:false
+    urls: [{
+        label: String,
+        link: String,
+        _id: false,
+        id: false
     }],
     modified: {
         type: String,
-        required:true
+        required: true
+    },
+    lock: {
+        lockType: {
+            type: Number,
+            default: 0
+        },
+        password: String
     }
 })
 

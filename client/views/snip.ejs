@@ -1,4 +1,3 @@
-<% url = 'http://'+baseUrl+snip.url %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +32,10 @@
             <div class="notif" id="notifunsaved">
                 <span>Unsaved Changes</span><i class="snap-exclamation"></i>
             </div>
+
+            <div id="locked" <%if(snip.lock.lockType==0){%>style="display:none" <% } %>>
+                Read Only
+            </div>
         </div>
         <div style="clear:both"></div>
         <div class="tools">
@@ -44,15 +47,31 @@
             <li><a href="#" alt="Help"><i class="snap-help"></i></a></li>
             <li><a href="#" for="deletesnap" alt="Delete"><i class="snap-cross"></i></a></li>
         </ul>
+
         <div class="popup" id="newsnap">
             <span class="popup-close">X</span>
             <h4>New Snap</h4>
             <form onsubmit="newSnap(event)">
                 <div class="input-group">
                     <span class="input-group-addon">http://<%=baseUrl%>/</span>
-                    <input id="newsnapinput" type="text" placeholder="Enter Url Suffix"/>
+                    <input id="locksnapinput" type="text" placeholder="Enter Url Suffix"/>
                     <button type="submit" class="input-group-addon">Go</button>
                 </div>             
+            </form>
+        </div>
+        <div class="popup" id="locksnap">
+            <span class="popup-close">X</span>
+            <h4>Lock Snap</h4>
+            <form onsubmit="lockSnap(event)">
+                <div class="radioinputs">
+                    <div><input type="radio" name="locksnap-op1" id="lock1"><label for="lock1">Read Only</label></div>
+                    <div><input type="radio" name="locksnap-op1" id="lock2"><label for="lock2">Exclusive Lock</label></div>
+                    <div><input type="radio" name="locksnap-op1" id="lock0"><label for="lock0">No Lock</label></div>
+                </div>
+                <div class="input-group">
+                    <input id="locknapinput" type="password" placeholder="Enter Password"/>
+                    <button type="submit" class="input-group-addon">Go</button>
+                </div>     
             </form>
         </div>
         <div class="popup" id="sharesnap">
@@ -104,6 +123,7 @@
     <script src="/js/jquery.min.js"></script>
     <script>
         var url = '<%=snip.url%>';
+        var lockType = <%=snip.lock.lockType%>
         var delid = '<%=snip&&snip.urls&&snip.urls.length || 0 %>';
         var lastUpdate = new Date;
         var changed = false;
@@ -120,6 +140,9 @@
         var notif = $('.notif')
         var popup = $('.popup')
         var newSnapIn = $('#newsnapinput')
+
+        $('#lock'+lockType).attr('checked',1)
+
         var refreshNote = function(){
             if((new Date - lastUpdate)<5000||!changed)
                 return;
@@ -178,6 +201,8 @@
             update(data)
         }
         var update = function(data){
+            if(lockType!=0&&!data.unlockPass)
+                return;
             notif.hide();
             saving.show();
             var up = $.post('/save',data,function(data){
@@ -203,6 +228,8 @@
             });
         }
         note.oninput = function(){
+            if(lockType!=0)
+                return;
             if(unsaved.is(':hidden')){
                 notif.hide();
                 unsaved.slideDown();}

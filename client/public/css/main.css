@@ -165,6 +165,9 @@ header div.title h1 span {
     	width: 90%;
     	margin:auto;
     }
+    #deletesnap button{
+    	margin:10px;
+    }
 }
 
 #linksinput {
@@ -292,10 +295,6 @@ i.snap-cross {
 .popup h4{
 	margin:10px 15px; 
 }
-.popup form label{
-	display: block;
-	margin-bottom: 5px;
-}
 .input-group-addon{
 	padding: 8px;
 	background: #13A0A5;
@@ -332,4 +331,25 @@ i.snap-cross {
 }
 #sharesnap input{
 	margin:0;
+}
+#locksnap input{
+	margin-left:0;
+}
+.radioinputs div{
+	text-align: left;
+	padding: 5px;
+}
+.radioinputs div input{
+	margin: 0 10px;
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top:2px;
+}
+#locked{
+    color:#fff;
+    background: #f00;
+    font-size: 0.8em;
+    float: right;
+    padding: 3px;
 }
