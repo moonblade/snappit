@@ -140,15 +140,18 @@
         var notif = $('.notif')
         var popup = $('.popup')
         var newSnapIn = $('#newsnapinput')
+        var noteAutosubmit
 
         $('#lock'+lockType).attr('checked',1)
 
         var refreshNote = function(){
-            if((new Date - lastUpdate)<5000||!changed)
-                return;
             var data = {url:url}
             data.note = noteForm.val() || '';
-            update(data)
+            if(noteAutosubmit)
+                clearTimeout(noteAutosubmit)
+            noteAutosubmit = setTimeout(function(){
+                update(data)
+            },3000)
         }
         urlForm.submit(function(event){
             console.log('submit')
