@@ -145,6 +145,7 @@
         $('#lock'+lockType).attr('checked',1)
 
         var refreshNote = function(){
+            if(!changed) return;
             var data = {url:url}
             data.note = noteForm.val() || '';
             if(noteAutosubmit)
