@@ -14,8 +14,8 @@
     height: 0;
 }
 
-button{
-	cursor: pointer;
+button {
+    cursor: pointer;
 }
 
 #note {
@@ -45,8 +45,8 @@ header .title {
     color: #fff;
 }
 
-#notifsaving i{
-	color:#fff;
+#notifsaving i {
+    color: #fff;
 }
 
 #notiferror {
@@ -160,13 +160,14 @@ header div.title h1 span {
     #side {
         width: 100%;
     }
-    .input-group-addon,form .input-group input{
-    	display: block;
-    	width: 90%;
-    	margin:auto;
+    .input-group-addon,
+    form .input-group input {
+        display: block;
+        width: 90%;
+        margin: auto;
     }
-    #deletesnap button{
-    	margin:10px;
+    #deletesnap button {
+        margin: 10px;
     }
 }
 
@@ -272,82 +273,101 @@ i.snap-cross {
     top: 0;
 }
 
-.popup{
-	position: absolute;
-	color:white;
-	padding: 10px;
-	background: rgb(46, 204, 113);
-	text-align: center;
-	z-index: 20;
-	display: none;
-}
-.popup-close{
-	position: absolute;
-	right: 0;
-	top:0;
-	background: #F83F1D;
-	color: white;
-	padding: 3px;
-	font-family: monospace;
-	cursor: pointer;
-	font-weight: bold;
-}
-.popup h4{
-	margin:10px 15px; 
-}
-.input-group-addon{
-	padding: 8px;
-	background: #13A0A5;
-	color: #fff;
-	border:none;
-	height: 40px;
-}
-.input-group input,.form-control{
-	padding:11px;
-	margin:0px -10px;
-	border:none;
+.popup {
+    position: absolute;
+    color: white;
+    padding: 10px;
+    background: rgba(46, 204, 204, 0.89);
+    text-align: center;
+    z-index: 20;
+    display: none;
 }
 
-.sharebuttons{
-	margin-top: 10px;
+.popup-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #F83F1D;
+    color: white;
+    padding: 3px;
+    font-family: monospace;
+    cursor: pointer;
+    font-weight: bold;
 }
-.sharebuttons a{
-	display: inline-block;
-	width: 32px;
-	height: 32px;
-	overflow: hidden;
+
+.popup h4 {
+    margin: 10px 15px;
 }
-.sharebuttons a i{
-	color:#fff;
+
+.input-group-addon {
+    padding: 8px;
+    background: #13A0A5;
+    color: #fff;
+    border: none;
+    height: 40px;
 }
-.sharebuttons a[icon=fb]{
-	background: blue;
-}.sharebuttons a[icon=tw]{
-	background: rgb(0, 159, 211);
-}.sharebuttons a[icon=gp]{
-	background: rgb(240, 64, 32)
-}.sharebuttons a[icon=ml] i{
-	background: orange;
+
+.input-group input,
+.form-control {
+    padding: 11px;
+    margin: 0px -10px;
+    border: none;
 }
-#sharesnap input{
-	margin:0;
+
+.sharebuttons {
+    margin-top: 10px;
 }
-#locksnap input{
-	margin-left:0;
+
+.sharebuttons a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
 }
-.radioinputs div{
-	text-align: left;
-	padding: 5px;
+
+.sharebuttons a i {
+    color: #fff;
 }
-.radioinputs div input{
-	margin: 0 10px;
-	width: 15px;
-	height: 15px;
-	position: relative;
-	top:2px;
+
+.sharebuttons a[icon=fb] {
+    background: blue;
 }
-#locked{
-    color:#fff;
+
+.sharebuttons a[icon=tw] {
+    background: rgb(0, 159, 211);
+}
+
+.sharebuttons a[icon=gp] {
+    background: rgb(240, 64, 32)
+}
+
+.sharebuttons a[icon=ml] i {
+    background: orange;
+}
+
+#sharesnap input {
+    margin: 0;
+}
+
+#locksnap input {
+    margin-left: 0;
+}
+
+.radioinputs div {
+    text-align: left;
+    padding: 5px;
+}
+
+.radioinputs div input {
+    margin: 0 10px;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 2px;
+}
+
+#locked {
+    color: #fff;
     background: #f00;
     font-size: 0.8em;
     float: right;
