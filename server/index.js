@@ -7,7 +7,7 @@ var path = require('path')
 var logger = require('morgan')
 
 var routes = require('./routes/index')
-
+var docs = require('./routes/docs');
 program
     .version('0.0.1')
     .option('-p ,--port <number>', "PORT", parseInt)
@@ -40,7 +40,8 @@ app.get('/', function(req, res) {
     res.render('index')
 });
 
-app.use(routes);
+app.use('/docs', docs);
+app.use('/', routes);
 
 app.listen(PORT, function(err) {
     console.log('Listening to port : ' + PORT)

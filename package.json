@@ -4,7 +4,8 @@
   "description": "simple note sharing website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "mongod & nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.6.5",
     "mongoose-validator": "^2.1.0",
-    "morgan": "^1.5.3"
+    "morgan": "^1.5.3",
+    "swagger-jsdoc": "^3.3.0",
+    "swagger-ui-express": "^4.0.7"
   }
 }
