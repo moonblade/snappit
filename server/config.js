@@ -1,6 +1,6 @@
 var config = {
     development: {
-        dbHost: 'mongodb://localhost/snappit',
+        dbHost: 'mongodb://mongo/snappit',
     },
     production: {
         dbHost: 'mongodb://localhost/snappit',

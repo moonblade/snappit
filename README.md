@@ -2,6 +2,16 @@
 
 ## Development Setup
 
+### Using Docker-compose
+
+```bash
+docker-compose up
+```
+
+Now, visit http://localhost:3000
+
+### Manual
+
 Prerequisites:
 - mongodb
 - nodejs
