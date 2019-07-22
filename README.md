@@ -8,15 +8,16 @@ Prerequisites:
 
 ```bash
 npm install
-node server/index.js
+npm start
 ```
+
 ## TODO
-- [ ] Seperate client and server code
 - [ ] Remove dependency on jquery
 - [ ] Complete lock functionality
 - [ ] Enhance UI
-- [ ] Host UI on github
 - [ ] Add Licence
+- [ ] Make the code ready for production
+- [x] Enhance security using helmet
 
 
 Feel free to create issues, raise PR and support <3
