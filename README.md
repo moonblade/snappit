@@ -15,11 +15,21 @@ Now, visit http://localhost:3000
 Prerequisites:
 - mongodb
 - nodejs
+- nodemon (OPTIONAL: For development)
 
 ```bash
 npm install
 npm start
 ```
+
+or
+
+```bash
+npm install
+npm run dev #For running dev server
+```
+
+Visit http://localhost:3000 to access the application
 
 ## TODO
 - [ ] Remove dependency on jquery
