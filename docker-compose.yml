@@ -5,6 +5,7 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
+      - MONGO_URL=mongodb://mongo/snappit
     ports:
       - 3000:3000
 
