@@ -3,7 +3,12 @@ var router = express.Router()
 var snipModel = require('../models/snip')
 var md5 = require('MD5')
 
-
+/**
+ * @swagger
+ *  /save:
+ *      post:
+ *          description: save snip to database
+ */
 router.post('/save', function(req, res) {
     var url = req.body.url;
     if (!url)
