@@ -3,12 +3,27 @@ var router = express.Router()
 var snipModel = require('../models/snip')
 var md5 = require('MD5')
 
-/**
- * @swagger
- *  /save:
- *      post:
- *          description: save snip to database
- */
+/*
+ * @api [post] /save
+ * description: "save snip to database"
+ * parameters:
+ *   - (query) url {string} The pet ID
+ *   - (query) unlockPass {string} Password to unlock snip if locked
+ *   - (query) note {string} Content of the snip
+ *   - in: query
+ *     name: lock
+ *     description: lock object associated with snip
+ *     schema: 
+ *          type: object
+ *          properties:
+ *               password: 
+ *                  type: string
+ *               lockType:
+ *                  type: number
+ * responses:
+ *   200:
+ *     description: Snip saved successfully
+ */             
 router.post('/save', function(req, res) {
     var url = req.body.url;
     if (!url)
