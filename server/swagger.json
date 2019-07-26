@@ -13,5 +13,20 @@
       "url": "http://localhost:3000/"
     }
   ],
-  "paths": {}
+  "paths": {},
+  "components": {
+    "schemas": {
+      "save": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "lockType": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
 }
