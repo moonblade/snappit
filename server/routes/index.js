@@ -6,15 +6,6 @@ var md5 = require('MD5')
 /*
  * @api [post] /save
  *  description: "save snip to database"
- *  parameters:
- *    - (query) url {string} The pet ID
- *    - (query) unlockPass {string} Password to unlock snip if locked
- *    - in: query
- *      name: note
- *      description: content of the snip
- *      schema:
- *           type: string
- *      example: "Test Content"
  *  requestBody:
  *      content: 
  *           application/json:
@@ -23,6 +14,7 @@ var md5 = require('MD5')
  *  responses:
  *    200:
  *      description: Snip saved successfully
+ * 			
  */             
 router.post('/save', function(req, res) {
     var url = req.body.url;
